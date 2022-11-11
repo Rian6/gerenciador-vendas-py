@@ -1,8 +1,6 @@
 import sqlite3
 
 class Conection():
-    def __init__(self):
-        print()
     def initialize():
         conn = sqlite3.connect('clientes.db')
         cursor = conn.cursor()

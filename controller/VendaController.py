@@ -16,3 +16,15 @@ class VendaController():
 
             dicVendas.append(dic)
         return dicVendas
+
+    def buscarPorCliente(sr=""):
+        vendas = VendaService.buscarPorCliente(sr)
+
+        dicVendas = []
+        for objeto in vendas:
+            dic = {}
+            dic["Cliente"] = objeto.getCliente().getNome()
+            dic["Carro"] = objeto.getCarro().getModelo()
+
+            dicVendas.append(dic)
+        return dicVendas

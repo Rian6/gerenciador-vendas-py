@@ -15,5 +15,21 @@ class CarroRepository():
         result = Conection.execute(QUERY_FIND_ALL)
 
         return result
+
+    def findAllNaoVendidos():
+        QUERY_FIND_ALL_NAO_VENDIDOS = """SELECT * FROM carro 
+                            where carro.id NOT IN (
+                                select idcarro from venda v  
+                            )"""
+        result = Conection.execute(QUERY_FIND_ALL_NAO_VENDIDOS)
+        return result
         
+    def findAllVendidos():
+        QUERY_FIND_ALL_VENDIDOS = """SELECT * FROM carro 
+                            where carro.id IN (
+                                select idcarro from venda v  
+                            )"""
+        result = Conection.execute(QUERY_FIND_ALL_VENDIDOS)
+
+        return result
 

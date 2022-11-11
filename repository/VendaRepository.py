@@ -25,3 +25,15 @@ class VendaRepository():
         result = Conection.execute(query)
 
         return result
+
+    def buscarPorCliente(sr):
+        QUERY_FIND_ALL = """select cl.nome as nomecliente, ca.modelo as modelocarro from venda ven
+                            left join carro ca on ca.id = ven.idcarro
+                            left join cliente cl on cl.id = ven.idcliente
+                            WHERE cl.nome like '%:sr%'"""
+
+        query = QUERY_FIND_ALL.replace(":sr", sr)
+
+        result = Conection.execute(query)
+
+        return result

@@ -8,6 +8,31 @@ class CarroService():
         carro.setPlaca(placa)
 
         CarroRepository.save(carro)
+    
+    def findAllNaoVendidos():
+        result = CarroRepository.findAllNaoVendidos()
+        carros = []
+        for row in result:
+            carro = Carro()
+            carro.setId(row[0])
+            carro.setModelo(row[1])
+            carro.setPlaca(row[2])
+
+            carros.append(carro)
+        return carros
+
+    def findAllVendidos():
+        result = CarroRepository.findAllVendidos()
+        carros = []
+        for row in result:
+            carro = Carro()
+            carro.setId(row[0])
+            carro.setModelo(row[1])
+            carro.setPlaca(row[2])
+
+            carros.append(carro)
+        
+        return carros
 
     def findAll():
         result = CarroRepository.findAll()

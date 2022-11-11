@@ -4,8 +4,8 @@ from controller.CarroController import CarroController
 def cadastrarCarro(modelo, placa):
     CarroController.cadastrar(modelo, placa)
 
-def carregarCarros():
-    carros = CarroController.buscarTodos()
+def carregarCarros(typ):
+    carros = CarroController.findAllNaoVendidos(typ)
     return carros
 
 def carro():
@@ -26,8 +26,8 @@ def carro():
     if(b1):
         cadastrarCarro(modelo, placa)
         st.success('Carro ('+modelo+') cadastrado com sucesso!', icon="✅")
-
-    carros = carregarCarros()
     
     st.markdown("---")
+    typ = st.selectbox("Filtrar: ", ["Todos", "Vendidos", "Não Vendidos"])
+    carros = carregarCarros(typ)
     st.dataframe(carros, use_container_width=True)

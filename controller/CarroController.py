@@ -4,9 +4,14 @@ class CarroController():
     def cadastrar(modelo, placa):
         CarroService.save(modelo, placa)
 
-    def buscarTodos():
-        carros = CarroService.findAll()
-
+    def findAllNaoVendidos(typ):
+        if(typ == "Não Vendidos"):
+            carros = CarroService.findAllNaoVendidos()
+        elif(typ == "Vendidos"):
+            carros = CarroService.findAllVendidos()
+        elif("Todos"):
+            carros = CarroService.findAll()
+        
         dicCarros = []
         for objeto in carros:
             dic = {}
@@ -17,7 +22,7 @@ class CarroController():
         return dicCarros
 
     def findAllCombo():
-        carros = CarroService.findAll()
+        carros = CarroService.findAllNaoVendidos()
         
         listaFinal = []
         for objeto in carros:

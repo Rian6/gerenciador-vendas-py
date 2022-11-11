@@ -11,12 +11,15 @@ from utils.Utils import Utils
 def cadastrarVenda(idCliente, idVendedor, idCarro):
     VendaController.cadastrar(idCliente, idVendedor, idCarro)
 
-def carregarVendas(sr):
-    vendas = VendaController.buscarPorVendedor(sr)
+def carregarVendas(sr, typ):
+    if(typ == "Vendedores"):
+        vendas = VendaController.buscarPorVendedor(sr)
+    else:
+        vendas = VendaController.buscarPorCliente(sr)
     return vendas
 
 def venda():
-    st.markdown("# Vendas")
+    st.markdown("# 👜 Vendas")
 
     st.markdown("---")
 
@@ -47,8 +50,13 @@ def venda():
 
     st.markdown("---")
 
-    sr = st.text_input('Pesquisar', placeholder="Pesquisar por vendedor")
+    c1, c2 = st.columns(2)
 
-    listaVendas = carregarVendas(sr)
+    with c1:
+        sr = st.text_input('Pesquisar', placeholder="Pesquisar")
+    with c2:
+        typ = st.selectbox("Buscar por: ", ["Vendedores", "Clientes"])
+
+    listaVendas = carregarVendas(sr, typ)
 
     st.dataframe(listaVendas, use_container_width=True)

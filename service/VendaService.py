@@ -46,3 +46,22 @@ class VendaService():
             vendas.append(venda)
         
         return vendas
+
+    def buscarPorCliente(sr):
+        result = VendaRepository.buscarPorCliente(sr)
+        vendas = []
+
+        for row in result:        
+            cliente = Cliente()
+            cliente.setNome(row[0])
+
+            carro = Carro()
+            carro.setModelo(row[1])
+
+            venda = Venda()
+            venda.setCarro(carro)
+            venda.setCliente(cliente)
+
+            vendas.append(venda)
+        
+        return vendas

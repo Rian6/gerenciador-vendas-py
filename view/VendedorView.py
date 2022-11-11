@@ -10,7 +10,7 @@ def carregarVendedores():
     return vendedores
 
 def vendedor():
-    st.markdown("# Vendedor")
+    st.markdown("# 🧑‍💼 Vendedor")
 
     st.markdown("---")
 
