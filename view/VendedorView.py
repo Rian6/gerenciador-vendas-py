@@ -13,16 +13,17 @@ def vendedor():
     st.markdown("# 🧑‍💼 Vendedor")
 
     st.markdown("---")
+    with st.expander("Cadastrar"):
 
-    st.markdown("### Cadastrar")
+        st.markdown("### Cadastrar")
 
-    col1, col2 = st.columns(2)
-    with col1:
-        nome = st.text_input("Nome")
-    with col2:
-        email = st.text_input("Email")
+        col1, col2 = st.columns(2)
+        with col1:
+            nome = st.text_input("Nome")
+        with col2:
+            email = st.text_input("Email")
 
-    b1 = st.button("Cadastrar")
+        b1 = st.button("Cadastrar")
 
     isSucess = False
     if(b1):

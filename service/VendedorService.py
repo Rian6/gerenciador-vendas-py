@@ -12,12 +12,12 @@ class VendedorService():
     def findAll():
         result = VendedorRepository.findAll()
         vendedores = []
-        for row in result:
-            vendedor = Vendedor()
-            vendedor.setId(row[0])
-            vendedor.setNome(row[1])
-            vendedor.setEmail(row[2])
+        if(type(result) is list):
+            for row in result:
+                vendedor = Vendedor()
+                vendedor.setId(row[0])
+                vendedor.setNome(row[1])
+                vendedor.setEmail(row[2])
 
-            vendedores.append(vendedor)
-        
+                vendedores.append(vendedor)
         return vendedores

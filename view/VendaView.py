@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import time
 
 from controller.ClienteController import ClienteController
 from controller.CarroController import CarroController
@@ -47,6 +48,8 @@ def venda():
     if(b1):
         cadastrarVenda(idCliente, idVendedor, idCarro)
         st.success('Venda registrada com sucesso!', icon="✅")
+        time.sleep(2)
+        st.experimental_rerun()
 
     st.markdown("---")
 

@@ -1,8 +1,22 @@
 from service.CarroService import CarroService
+import streamlit as st
+
+from entity.Carro import Carro
+from validate.CarroValidate import CarroValidate
 
 class CarroController():
     def cadastrar(modelo, placa):
-        CarroService.save(modelo, placa)
+        carro = Carro()
+        carro.setModelo(modelo)
+        carro.setPlaca(placa)
+
+        validate = CarroValidate.validate(carro)
+        if(validate == []):
+            CarroService.save(carro)
+            st.success('Carro ( '+modelo+' ) cadastrado com sucesso!', icon="✅")
+        else:
+            for i in validate:
+                st.error("Erro: "+i, icon="✅")
 
     def findAllNaoVendidos(typ):
         if(typ == "Não Vendidos"):

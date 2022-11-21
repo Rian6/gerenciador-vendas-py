@@ -28,40 +28,41 @@ class VendaService():
         result = VendaRepository.buscarPorVendedor(sr)
         vendas = []
 
-        for row in result:        
-            vendedor = Vendedor()
-            vendedor.setNome(row[0])
+        if(type(result) is list):
+            for row in result:        
+                vendedor = Vendedor()
+                vendedor.setNome(row[0])
 
-            carro = Carro()
-            carro.setModelo(row[1])
+                carro = Carro()
+                carro.setModelo(row[1])
 
-            cliente = Cliente()
-            cliente.setNome(row[2])
+                cliente = Cliente()
+                cliente.setNome(row[2])
 
-            venda = Venda()
-            venda.setCarro(carro)
-            venda.setCliente(cliente)
-            venda.setVendedor(vendedor)
+                venda = Venda()
+                venda.setCarro(carro)
+                venda.setCliente(cliente)
+                venda.setVendedor(vendedor)
 
-            vendas.append(venda)
-        
+                vendas.append(venda)
+            
         return vendas
 
     def buscarPorCliente(sr):
         result = VendaRepository.buscarPorCliente(sr)
         vendas = []
+        if(type(result) is list):
+            for row in result:        
+                cliente = Cliente()
+                cliente.setNome(row[0])
 
-        for row in result:        
-            cliente = Cliente()
-            cliente.setNome(row[0])
+                carro = Carro()
+                carro.setModelo(row[1])
 
-            carro = Carro()
-            carro.setModelo(row[1])
+                venda = Venda()
+                venda.setCarro(carro)
+                venda.setCliente(cliente)
 
-            venda = Venda()
-            venda.setCarro(carro)
-            venda.setCliente(cliente)
-
-            vendas.append(venda)
+                vendas.append(venda)
         
         return vendas

@@ -9,23 +9,22 @@ def carregarCarros(typ):
     return carros
 
 def carro():
-    st.markdown("# Carro")
+    st.markdown("# 🚗 Carro")
 
     st.markdown("---")
 
-    st.markdown("### Cadastrar")
+    with st.expander("Cadastrar"):
+        st.markdown("### Cadastrar")
+        col1, col2 = st.columns(2)
+        with col1:
+            modelo = st.text_input("Modelo")
+        with col2:
+            placa = st.text_input("Placa")
 
-    col1, col2 = st.columns(2)
-    with col1:
-        modelo = st.text_input("Modelo")
-    with col2:
-        placa = st.text_input("Placa")
-
-    b1 = st.button("Cadastrar")
+        b1 = st.button("Cadastrar")
 
     if(b1):
         cadastrarCarro(modelo, placa)
-        st.success('Carro ('+modelo+') cadastrado com sucesso!', icon="✅")
     
     st.markdown("---")
     typ = st.selectbox("Filtrar: ", ["Todos", "Vendidos", "Não Vendidos"])

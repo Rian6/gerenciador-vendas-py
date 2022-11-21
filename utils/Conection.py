@@ -1,8 +1,10 @@
 import sqlite3
+from utils.Config import Config
 
 class Conection():
     def initialize():
-        conn = sqlite3.connect('clientes.db')
+        config = Config()
+        conn = sqlite3.connect(config.getDatabaseName())
         cursor = conn.cursor()
         sql = [
             """            
@@ -44,7 +46,8 @@ class Conection():
 
     def insert(sql, data):
         try:
-            sqliteConnection = sqlite3.connect('clientes.db')
+            config = Config()
+            sqliteConnection = sqlite3.connect(config.getDatabaseName())
             cursor = sqliteConnection.cursor()
             print("Sucesso ao conectar com o banco")
 
@@ -64,7 +67,8 @@ class Conection():
     def execute(query):
         records = None
         try:
-            sqliteConnection = sqlite3.connect('clientes.db')
+            config = Config()
+            sqliteConnection = sqlite3.connect(config.getDatabaseName())
             cursor = sqliteConnection.cursor()
             print("Conectando ao sqlite")
 

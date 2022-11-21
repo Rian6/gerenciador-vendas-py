@@ -6,8 +6,15 @@ from view.VendedorView import vendedor
 from view.CarroView import carro
 from view.VendaView import venda
 
+from utils.Config import Config
+
 class Router():
     def router():
+        config = Config()
+        scname = config.getSreenCacheName()
+        
+        a = open(scname, "r")
+
         def renderCliente():
             cliente()
 
@@ -20,10 +27,10 @@ class Router():
         def renderVenda():
             venda()
         
-        a = open("screen_cache.bin", "r")
+        a = open(scname, "r")
         pagina_selecionada = a.read()
         a.close()
-        
+
         st.sidebar.markdown("# Menu")
         st.sidebar.markdown("---")
         
@@ -48,7 +55,7 @@ class Router():
         elif(bcarro):
             pagina_selecionada = "carro"
 
-        ar = open("screen_cache.bin", "w")
+        ar = open(scname, "w")
         ar.write(pagina_selecionada)
         ar.close()
 
